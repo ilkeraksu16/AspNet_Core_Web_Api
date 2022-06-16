@@ -35,7 +35,7 @@ namespace NLayerApp.Repository.Repositories
             return await _dbSet.AnyAsync(expression);
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
+        public IQueryable<T> GetAll()
         {
             // ASNoTracking ile çektiği datayı memory'e almasın tolist dedikten sonra sorgu veritabanına geçer.ve cevap gelip memorye alır.
             return _dbSet.AsNoTracking().AsQueryable();

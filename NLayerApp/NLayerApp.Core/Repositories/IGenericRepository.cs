@@ -10,7 +10,7 @@ namespace NLayerApp.Core.Repositories
     public interface IGenericRepository<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
-        IQueryable<T> GetAll(Expression<Func<T,bool>> expression);
+        IQueryable<T> GetAll();
         /*
          Aşağıdaki Where methodu IQueryable tanımlandı çünkü bu methodla gelen data üzerinde order by yapılabilir ve bu aşamaya kadar Db üzerinde sorgumuz henüz executer edilmedi, ne zaman toList deriz ondan sonra execute edilir. Bu sebeple methodumuz Async değil. Örnek kullanım 
             productRepository.where(x=>x.id>5).OrderBy.ToListAsync();
