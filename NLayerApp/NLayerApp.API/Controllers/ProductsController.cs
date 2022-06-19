@@ -11,12 +11,23 @@ namespace NLayerApp.API.Controllers
     {
         protected readonly IMapper _mapper;
         protected readonly IService<Product> _service;
+        protected readonly IProductService _productService;
 
-        public ProductsController(IMapper mapper, IService<Product> service)
+        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
             _service = service;
+            _productService = productService;
         }
+
+        //GET api/Products/GetProductsWithCategory
+        //[HttpGet("GetProductsWithCategory")] bu ifade aşağıdakiyle aynı anlama gelmektedir.
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductsWithCategory()
+        {
+            return CreateActionResult(await _productService.GetProductsWithCategory());
+        }
+
         // GET - api/products
         [HttpGet]
         public async Task<IActionResult> All()
